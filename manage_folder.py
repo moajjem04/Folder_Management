@@ -1,11 +1,11 @@
 import os
 from collections import Counter
-from utils import extension_to_folder, move_file
+from utils import extension_to_folder, move_file, dir_empty
 from tqdm import tqdm    
 
 if __name__ == '__main__':
-
-    fol_to_manage = 'D:\\Opera Download'
+    # Folder names
+    fol_to_manage = 'D:\\Edge Download'
     esc_border = "=="* 50
     print(f"\n{esc_border}")
     print(f"\nManaging folder - {fol_to_manage}")
@@ -13,8 +13,10 @@ if __name__ == '__main__':
     print(f"\nThe folder has {len(files)} files")
     n = 5
     print(f'\nFirst {n} files are :')
-    for i in range(n):
+    for i in range(len(files)):
         print(f"  -->{files[i]}")
+        if i == n:
+            break
     
     file_exts = [i.split('.')[-1] for i in files]
     file_ext_dict = Counter(file_exts)
@@ -57,4 +59,9 @@ if __name__ == '__main__':
         source = os.path.join(fol_to_manage, f)
         dest   = os.path.join(fol_to_manage, folder, f)
         move_file(source, dest)
+
+    for folder in folders_available.values():
+        if os.path.exists(os.path.join(fol_to_manage, folder)):
+            if dir_empty(os.path.join(fol_to_manage, folder)):
+                os.rmdir(os.path.join(fol_to_manage, folder))
 

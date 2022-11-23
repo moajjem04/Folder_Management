@@ -1,4 +1,5 @@
 import shutil
+import os
 
 def extension_to_folder():
     e_t_f = {}
@@ -55,6 +56,10 @@ def move_file(source, destination):
     
     # # For other errors
     # except:
-    #     print("Error occurred while copying file.")
-
+    #     print("Error occurred while copying file."
+        
+def dir_empty(dir_path):
+    """source: https://stackoverflow.com/questions/57968829/
+    what-is-the-fastest-way-to-check-whether-a-directory-is-empty-in-python"""
+    return not next(os.scandir(dir_path), None)
 
