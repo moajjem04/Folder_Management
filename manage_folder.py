@@ -2,7 +2,6 @@ import os
 from collections import Counter
 from utils import extension_to_folder, move_file
 from tqdm import tqdm    
-    
 
 if __name__ == '__main__':
 
